@@ -11,6 +11,7 @@
 </head>
 <body>
     <div class="container">
+        <!-- Header -->
         <div class="row header-box pt-4">
             <div class="col-md-8">
                 <h1>
@@ -18,17 +19,41 @@
                 </h1>
             </div>
             <div class="col-md-4">
+                <!-- Navigation Links -->
                 <p>
-                    <a href="/login" class="btn btn-primary">SingUn</a>
+                    <a href="/register" class="btn btn-primary">Sign Up</a>
                     <a href="/login" class="btn btn-primary">Login</a>
-                    <a href="/login" class="btn btn-primary">Logout</a>
+                    <a href="/add" class="btn btn-primary">Add</a>
                 </p>
             </div>
         </div>
-    
 
-    {% block content %} {% endblock %}
+        <!-- Main Content -->
+        <div class="row">
+            <div class="col-md-12">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
 
+        <!-- Additional Action -->
+        <div class="row mt-5">
+            <div class="col-md-12 text-center">
+                <a href="/add_quote" class="btn btn-success">Add a new author and his quote</a>
+            </div>
+        </div>
     </div>
-</body>
-</html>
+
+        <!-- Login Form -->
+        <div class="container mt-5">
+            {% block login_form %}
+            {% endblock %}
+        </div>
+
+        <!-- Registration Form -->
+        <div class="container mt-5">
+            {% block registration_form %}
+            {% endblock %}
+        </div>
+    </body>
+    </html>
