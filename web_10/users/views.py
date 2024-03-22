@@ -1,5 +1,4 @@
 from django import forms
-from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from users.forms import UserCreationForm, QuoteForm, AuthorForm
 from quotes.models import Quote, Author
