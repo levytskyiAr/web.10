@@ -11,18 +11,26 @@ def main(request, page = 1):
     return render(request, 'quotes/index.html', context={'quotes': quotes_on_page})
      
 
-def Jane_Austen(request):
-    return render(request, 'quotes\austen.html')
+def Austen(request):
+    return render(request, 'quotes\Austen.html')
 
-def Albert_einstein(request):
-    return render(request, 'quotes\einstein.html')
+def Einstein(request):
+    return render(request, 'quotes\Einstein.html')
 
 def Rowling(request):
-    return render(request, 'quotes\rowling.html')
+    return render(request, 'quotes\Rowling.html')
 
-def Andre_Gide(request):
-    return render(request, 'quotes\gide.html')
+def Gide(request):
+    return render(request, 'quotes\Gide.html')
 
-def Marilyn_Monroe(request):
-    return render(request, 'quotes\monroe.html')
+def Monroe(request):
+    return render(request, 'quotes\Monroe.html')
 
+def Edison(request):
+    return render(request, 'quotes\Edison.html')
+
+def Roosevelt(request):
+    return render(request, 'quotes\Roosevelt.html')
+
+def Martin(request):
+    return render(request, 'quotes\Martin.html')

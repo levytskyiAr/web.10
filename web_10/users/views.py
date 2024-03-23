@@ -42,16 +42,9 @@ def add(request):
         if quote_form.is_valid() and author_form.is_valid():
             quote_text = quote_form.cleaned_data['quote']
             author_name = author_form.cleaned_data['fullname']
-            
-            client = MongoClient('mongodb://localhost:27017/')
-            db = client['web10']
-            authors_collection = db['authors']
-            author_id = authors_collection.insert_one({'name': author_name}).inserted_id
-            
-            quote = Quote(text=quote_text, author_id=str(author_id))
-            quote.save()
-            
-            return redirect('index.html')
+            author, created = Author.objects.get_or_create(fullname=author_name)
+            quote = Quote.objects.create(quote=quote_text, author=author)
+            return redirect('/')
         
     else:
         quote_form = QuoteForm()

@@ -1,14 +1,6 @@
 {% extends 'quotes/base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/style.css">
-    <title>Add</title>
-</head>
-<body>
+{% block content %}
     <h2>Add Quote</h2>
     <form method="post">
         {% csrf_token %}
@@ -16,5 +8,4 @@
         {{ author_form.as_p }}
         <button type="submit">Add</button>
     </form>
-</body>
-</html>
+{% endblock %}
