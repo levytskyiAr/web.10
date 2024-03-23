@@ -6,6 +6,7 @@ from pymongo import MongoClient
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .forms import QuoteForm, AuthorForm
+from .decorators import user_authenticated
 
 
 def register(request):
@@ -33,7 +34,7 @@ class LoginForm(AuthenticationForm):
         return self.cleaned_data
     
 
-
+@user_authenticated
 def add(request):
     if request.method == 'POST':
         quote_form = QuoteForm(request.POST)
