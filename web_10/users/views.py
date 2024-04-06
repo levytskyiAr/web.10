@@ -1,12 +1,15 @@
 from django import forms
-from django.contrib.auth import authenticate, login
-from users.forms import UserCreationForm, QuoteForm, AuthorForm
-from quotes.models import Quote, Author
-from pymongo import MongoClient
+from django.contrib.auth import authenticate, login, update_session_auth_hash
+from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
+
 from .forms import QuoteForm, AuthorForm
 from .decorators import user_authenticated
+from quotes.models import Quote, Author
+from users.forms import UserCreationForm, QuoteForm, AuthorForm
+
+
 
 
 def register(request):
@@ -52,3 +55,16 @@ def add(request):
         author_form = AuthorForm()
         
     return render(request, 'add.html', {'quote_form': quote_form, 'author_form': author_form})
+
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Your password has been successfully changed!')
+            return redirect('/')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'change_password.html', {'form': form})
